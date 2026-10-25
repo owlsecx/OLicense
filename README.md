@@ -18,13 +18,18 @@
 
 ## 📌 Overview
 
-OLicense is a security and privacy tool from the OwlSec suite.
+OLicense audits the open-source licenses in a project. It identifies license texts by phrase fingerprint, scans a source tree for SPDX-License-Identifier tags, LICENSE files and package-manifest license fields, and checks whether those inbound licenses are compatible with your project's outbound license. It ships with all 740 SPDX license identifiers built in.
 
 ---
 
 ## ✨ Features
 
-- Standalone executable, no Python installation needed.
+- Identifies a license from its full text with a confidence score
+- Validates SPDX ids and expressions (AND / OR / WITH / +), including deprecation and OSI/FSF status
+- Scans source trees: SPDX tags, LICENSE files and manifests (package.json, Cargo.toml, pyproject, composer, pom.xml, gemspec, setup.cfg)
+- Compatibility matrix and inbound → outbound checks with copyleft findings
+- Extracts copyright lines, lists per-license obligations and generates a NOTICES file
+- Reports in TXT / JSON / Markdown / CSV / SARIF; CLI exits with code 3 on conflicts
 
 ---
 
@@ -38,8 +43,14 @@ OLicense is a security and privacy tool from the OwlSec suite.
 ## 🚀 Usage
 
 ```bash
-./OLicense
+./OLicense                                   # interactive menu
+./OLicense --scan ./myproject --project MIT --notices NOTICES
+./OLicense --identify LICENSE
+./OLicense --validate "Apache-2.0 OR MIT"
+./OLicense --compat GPL-3.0-only MIT
 ```
+
+Run `./OLicense --help` for the full list of options.
 
 ---
 
